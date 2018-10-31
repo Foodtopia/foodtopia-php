@@ -1,0 +1,12 @@
+{
+    "name": "user/test_php",
+    "authors": [
+        {
+            "name": "shinder",
+            "email": "lsd0125@gmail.com"
+        }
+    ],
+    "require": {
+        "facebook/graph-sdk": "^5.6"
+    }
+}
