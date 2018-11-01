@@ -23,6 +23,8 @@ if(! isset($_SESSION['user'])){
 <body>
 <?php if(isset($_SESSION['user'])): ?>
 Hello <?= $_SESSION['user'] ?>
+    <br>
+    <a href="logout01.php">登出</a>
 <?php else: ?>
 <form action="" method="post">
     <label for="user">用戶名稱</label>
