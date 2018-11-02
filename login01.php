@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+$user = isset($_POST['user']) ? $_POST['user'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
+
 // 如果還沒有登入
 if(! isset($_SESSION['user'])){
     // 判斷是否有送登入的帳號密碼
@@ -28,10 +32,10 @@ Hello <?= $_SESSION['user'] ?>
 <?php else: ?>
 <form action="" method="post">
     <label for="user">用戶名稱</label>
-    <input type="text" id="user" name="user">
+    <input type="text" id="user" name="user" value="<?= htmlentities($user) ?>">
     <br>
     <label for="user">密碼</label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password" value="<?= htmlentities($password) ?>">
     <br>
     <input type="submit" value="登入">
     <br>
