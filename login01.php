@@ -11,6 +11,9 @@ if(! isset($_SESSION['user'])){
         // 比對帳號和密碼是否正確
         if($_POST['user']==='shin' and $_POST['password']==='1234'){
             $_SESSION['user'] = 'shin'; // 代表已登入
+        } else {
+            // 設定訊息變數
+            $msg = '帳號或密碼錯誤';
         }
     }
 }
@@ -30,6 +33,13 @@ Hello <?= $_SESSION['user'] ?>
     <br>
     <a href="logout01.php">登出</a>
 <?php else: ?>
+
+    <?php
+    // 如果有設定訊息變數, 顯示變數內容
+    if(isset($msg)): ?>
+    <div style="color:red"><?= $msg ?></div>
+    <?php endif ?>
+
 <form action="" method="post">
     <label for="user">用戶名稱</label>
     <input type="text" id="user" name="user" value="<?= htmlentities($user) ?>">
