@@ -2,7 +2,12 @@
 require __DIR__. '/__connect_db.php';
 $pname = 'list'; // 自訂的頁面名稱
 
-$stmt = $pdo->query("SELECT * FROM address_book");
+$per_page = 5; //每頁有幾筆
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1; // 第幾頁
+
+$sql = sprintf("SELECT * FROM address_book LIMIT %s, %s",
+    ($page-1)*$per_page, $per_page);
+$stmt = $pdo->query($sql);
 ?>
 <?php include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
