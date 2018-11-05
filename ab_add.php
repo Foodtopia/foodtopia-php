@@ -4,20 +4,44 @@ require __DIR__. '/__connect_db.php';
 $pname = 'add'; // 自訂的頁面名稱
 
 if(!empty($_POST['name']) and !empty($_POST['email'])){
-    $sql = "INSERT INTO `address_book`(
+
+    $sql = sprintf("INSERT INTO `address_book`(
  `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
- ) VALUES (?, ?, ?, ?, ?, NOW())";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        $_POST['name'],
-        $_POST['email'],
-        $_POST['mobile'],
-        $_POST['address'],
-        $_POST['birthday']
-    ]);
+ ) VALUES (%s, %s, %s, %s, %s, NOW())",
+        $pdo->quote($_POST['name']),
+        $pdo->quote($_POST['email']),
+        $pdo->quote($_POST['mobile']),
+        $pdo->quote($_POST['address']),
+        $pdo->quote($_POST['birthday'])
 
-    $result = $stmt->rowCount();
+        );
 
+    echo $sql;
+
+
+    /*
+//    try {
+
+        $sql = "INSERT INTO `address_book`(
+ `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
+ ) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $_POST['name'],
+            $_POST['email'],
+            $_POST['mobile'],
+            $_POST['address'],
+            $_POST['birthday']
+        ]);
+
+        $result = $stmt->rowCount();
+//    } catch(PDOException $ex){
+//        echo $ex->getMessage();
+//    }
+
+
+    */
 }
 
 
