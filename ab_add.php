@@ -3,17 +3,25 @@ require __DIR__. '/__connect_db.php';
 
 $pname = 'add'; // 自訂的頁面名稱
 
-//
-//$per_page = 5; //每頁有幾筆
-//$page = isset($_GET['page']) ? intval($_GET['page']) : 1; // 第幾頁
-//
-//$t_sql = "SELECT COUNT(1) FROM address_book";
-//$total_rows = $pdo->query($t_sql)->fetch()[0]; //總筆數
-//$total_pages = ceil($total_rows/$per_page); //總頁數
-//
-//$sql = sprintf("SELECT * FROM address_book LIMIT %s, %s",
-//    ($page-1)*$per_page, $per_page);
-//$stmt = $pdo->query($sql);
+if(!empty($_POST['name']) and !empty($_POST['email'])){
+    $sql = "INSERT INTO `address_book`(
+ `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
+ ) VALUES (?, ?, ?, ?, ?, NOW())";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $_POST['name'],
+        $_POST['email'],
+        $_POST['mobile'],
+        $_POST['address'],
+        $_POST['birthday']
+    ]);
+
+    $result = $stmt->rowCount();
+
+}
+
+
+
 ?>
 <?php include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
@@ -21,8 +29,8 @@ $pname = 'add'; // 自訂的頁面名稱
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">新增資料</h5>
-                <form method="post">
+                <h5 class="card-title">新增資料 <?= isset($result)? $result : '' ?></h5>
+                <form method="post" >
                     <div class="form-group">
                         <label for="name">姓名</label>
                         <input type="text" class="form-control"
@@ -55,4 +63,24 @@ $pname = 'add'; // 自訂的頁面名稱
         </div>
     </div>
 </div>
+    <script>
+        var name = $('#name'),
+            email = $('#email'),
+            i;
+
+        function formCheck(){
+            var isPass = true;
+
+            if(! name.val()){
+                alert('請填寫姓名');
+                isPass = false;
+            }
+            if(! email.val()){
+                alert('請填寫電子郵箱');
+                isPass = false;
+            }
+            return isPass;
+        }
+
+    </script>
 <?php include __DIR__. '/__html_foot.php';
