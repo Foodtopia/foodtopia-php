@@ -57,11 +57,11 @@ $stmt = $pdo->query($sql);
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="?page=1">&lt;&lt;</a></li>
-            <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>">&lt;</a></li>
+            <li class="page-item <?= $page==1 ? 'disabled' : ''; ?>"><a class="page-link" href="?page=1">&lt;&lt;</a></li>
+            <li class="page-item <?= $page==1 ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?= $page-1 ?>">&lt;</a></li>
             <li class="page-item"><a class="page-link"><?= $page. '/'. $total_pages ?></a></li>
-            <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>">&gt;</a></li>
-            <li class="page-item"><a class="page-link" href="?page=<?= $total_pages ?>">&gt;&gt;</a></li>
+            <li class="page-item <?= $page==$total_pages ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?= $page+1 ?>">&gt;</a></li>
+            <li class="page-item <?= $page==$total_pages ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?= $total_pages ?>">&gt;&gt;</a></li>
         </ul>
     </nav>
 </div>
