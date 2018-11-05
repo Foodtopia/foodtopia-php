@@ -1,5 +1,6 @@
 <?php
 require __DIR__. '/__connect_db.php';
+$pname = 'list'; // 自訂的頁面名稱
 
 $stmt = $pdo->query("SELECT * FROM address_book");
 ?>

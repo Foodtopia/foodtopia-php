@@ -8,11 +8,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item <?= $pname=='index' ? 'active' : '' ?>">
+                    <a class="nav-link" href="ab_index.php">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item <?= $pname=='list' ? 'active' : '' ?>">
+                    <a class="nav-link" href="ab_list.php">List</a>
                 </li>
             </ul>
         </div>

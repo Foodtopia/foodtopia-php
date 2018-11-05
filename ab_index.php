@@ -1,4 +1,7 @@
-<?php include __DIR__. '/__html_head.php'; ?>
+<?php
+$pname = 'index';
+
+include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
 
 <div class="container">
