@@ -22,7 +22,7 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
 
         $sql = "INSERT INTO `address_book`(
  `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
- ) VALUES (?, ?, ?, ?, ?)";
+ ) VALUES (?, ?, ?, ?, ?, NOW())";
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
@@ -34,12 +34,29 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
         ]);
 
         $result = $stmt->rowCount();
+        if($result==1){
+            $info = [
+                'type' => 'success',
+                'text' => '資料新增完成'
+            ];
+        } elseif($result==0) {
+            $info = [
+                'type' => 'danger',
+                'text' => '資料沒有新增'
+            ];
+        }
+
+//        if($result) {
+//            echo '<script>alert("資料新增完成")</script>';
+//        }
+
     } catch(PDOException $ex){
-        echo $ex->getMessage();
+        //echo $ex->getMessage();
+        $info = [
+            'type' => 'danger',
+            'text' => '資料沒有新增'
+        ];
     }
-
-
-
 }
 
 
@@ -48,6 +65,13 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
 <?php include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
 <div class="container" style="margin-top: 20px">
+    <?php if(isset($info)): ?>
+    <div class="col-md-6">
+        <div class="alert alert-<?= $info['type'] ?>" role="alert">
+            <?= $info['text'] ?>
+        </div>
+    </div>
+    <?php endif; ?>
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
@@ -56,7 +80,8 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
                     <div class="form-group">
                         <label for="name">姓名</label>
                         <input type="text" class="form-control"
-                               id="name" name="name" placeholder="Enter name">
+                               id="name" name="name"
+                               placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="email">電郵</label>
@@ -71,7 +96,7 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
                     <div class="form-group">
                         <label for="birthday">生日</label>
                         <input type="text" class="form-control"
-                               id="birthday" name="birthday" placeholder="Enter birthday">
+                               id="birthday" name="birthday" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="form-group">
                         <label for="address">地址</label>
@@ -91,6 +116,7 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
             i;
 
         function formCheck(){
+            var birthday_pattern = /\d{4}\-\d{1,2}\-\d{1,2}/;
             var isPass = true;
 
             if(! name.val()){
