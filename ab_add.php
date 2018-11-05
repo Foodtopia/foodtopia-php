@@ -51,10 +51,14 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
 //        }
 
     } catch(PDOException $ex){
-        //echo $ex->getMessage();
+
+        // 如果 email 欄設定為唯一鍵, 不可重複輸入相同的 email
+        // SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaa@bbb.com' for key 'email'
+
+        echo $ex->getMessage();
         $info = [
             'type' => 'danger',
-            'text' => '資料沒有新增'
+            'text' => 'email 請勿重複'
         ];
     }
 }
@@ -75,7 +79,7 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">新增資料 <?= isset($result)? $result : '' ?></h5>
+                <h5 class="card-title">新增資料 <?php isset($result)? var_dump($result) : '' ?></h5>
                 <form method="post" >
                     <div class="form-group">
                         <label for="name">姓名</label>
