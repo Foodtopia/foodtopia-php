@@ -16,14 +16,17 @@ $stmt = $pdo->query($sql);
 <?php include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
 <div class="container" style="margin-top: 20px">
-<div><?= $total_rows. '::'. $total_pages ?></div>
+
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+<!--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+            <?php for($i=1; $i<=$total_pages; $i++):?>
+            <li class="page-item <?= $i==$page ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?=$i?>"><?=$i?></a>
+            </li>
+            <?php endfor ?>
+
+<!--            <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
         </ul>
     </nav>
 
