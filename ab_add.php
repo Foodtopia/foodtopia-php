@@ -5,22 +5,20 @@ $pname = 'add'; // 自訂的頁面名稱
 
 if(!empty($_POST['name']) and !empty($_POST['email'])){
 
-    $sql = sprintf("INSERT INTO `address_book`(
- `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
- ) VALUES (%s, %s, %s, %s, %s, NOW())",
-        $pdo->quote($_POST['name']),
-        $pdo->quote($_POST['email']),
-        $pdo->quote($_POST['mobile']),
-        $pdo->quote($_POST['address']),
-        $pdo->quote($_POST['birthday'])
+//    $sql = sprintf("INSERT INTO `address_book`(
+// `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
+// ) VALUES (%s, %s, %s, %s, %s, NOW())",
+//        $pdo->quote($_POST['name']),
+//        $pdo->quote($_POST['email']),
+//        $pdo->quote($_POST['mobile']),
+//        $pdo->quote($_POST['address']),
+//        $pdo->quote($_POST['birthday'])
+//
+//        );
+//
+//    echo $sql;
 
-        );
-
-    echo $sql;
-
-
-    /*
-//    try {
+    try {
 
         $sql = "INSERT INTO `address_book`(
  `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
@@ -36,12 +34,12 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
         ]);
 
         $result = $stmt->rowCount();
-//    } catch(PDOException $ex){
-//        echo $ex->getMessage();
-//    }
+    } catch(PDOException $ex){
+        echo $ex->getMessage();
+    }
 
 
-    */
+
 }
 
 

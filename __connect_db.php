@@ -11,6 +11,7 @@ try {
 
     // 連線使用的編碼設定
     $pdo->query("SET NAMES utf8");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $ex) {
     echo 'Connection failed:'. $ex->getMessage();
 }
