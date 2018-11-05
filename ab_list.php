@@ -56,7 +56,7 @@ $stmt = $pdo->query("SELECT * FROM address_book");
         </tr>
         </thead>
         <tbody>
-        <?php $r = $stmt->fetch(PDO::FETCH_ASSOC) ?>
+        <?php while($r = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
         <tr>
             <th scope="row"><?= $r['sid'] ?></th>
             <td><?= $r['name'] ?></td>
@@ -65,7 +65,7 @@ $stmt = $pdo->query("SELECT * FROM address_book");
             <td><?= $r['address'] ?></td>
             <td><?= $r['birthday'] ?></td>
         </tr>
-
+        <?php endwhile; ?>
         </tbody>
     </table>
 </div>
