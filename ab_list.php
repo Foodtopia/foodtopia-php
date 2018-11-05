@@ -1,3 +1,9 @@
+<?php
+require __DIR__. '/__connect_db.php';
+
+$stmt = $pdo->query("SELECT * FROM address_book");
+
+?>
 <!doctype html>
 <html lang="zh">
 <head>
@@ -42,30 +48,24 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">name</th>
+            <th scope="col">email</th>
+            <th scope="col">mobile</th>
+            <th scope="col">address</th>
+            <th scope="col">birthday</th>
         </tr>
         </thead>
         <tbody>
+        <?php $r = $stmt->fetch(PDO::FETCH_ASSOC) ?>
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row"><?= $r['sid'] ?></th>
+            <td><?= $r['name'] ?></td>
+            <td><?= $r['email'] ?></td>
+            <td><?= $r['mobile'] ?></td>
+            <td><?= $r['address'] ?></td>
+            <td><?= $r['birthday'] ?></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+
         </tbody>
     </table>
 </div>
