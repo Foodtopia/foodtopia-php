@@ -54,8 +54,9 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
 
         // 如果 email 欄設定為唯一鍵, 不可重複輸入相同的 email
         // SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaa@bbb.com' for key 'email'
-
+        // Code: 23000
         echo $ex->getMessage();
+        //echo '---'. $ex->getCode(). '---';
         $info = [
             'type' => 'danger',
             'text' => 'email 請勿重複'

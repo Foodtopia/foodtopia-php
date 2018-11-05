@@ -33,23 +33,27 @@ $stmt = $pdo->query($sql);
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
+            <th scope="col">del</th>
             <th scope="col">#</th>
             <th scope="col">name</th>
             <th scope="col">email</th>
             <th scope="col">mobile</th>
             <th scope="col">address</th>
             <th scope="col">birthday</th>
+            <th scope="col">edit</th>
         </tr>
         </thead>
         <tbody>
         <?php while($r = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
         <tr>
+            <td><a href="ab_del.php?sid=<?= $r['sid'] ?>"><i class="fas fa-trash-alt"></i></a></td>
             <th scope="row"><?= $r['sid'] ?></th>
             <td><?= $r['name'] ?></td>
             <td><?= $r['email'] ?></td>
             <td><?= $r['mobile'] ?></td>
             <td><?= $r['address'] ?></td>
             <td><?= $r['birthday'] ?></td>
+            <td><i class="fas fa-edit"></i></td>
         </tr>
         <?php endwhile; ?>
         </tbody>
