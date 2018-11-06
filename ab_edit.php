@@ -85,7 +85,7 @@ if(empty($r_row)){
                     </div>
                     <div class="form-group">
                         <label for="email">電郵</label>
-                        <input type="email" class="form-control"
+                        <input type="email" class="form-control" readonly
                                id="email" name="email" value="<?= htmlentities($r_row['email']) ?>"
                                placeholder="Enter email">
                     </div>
