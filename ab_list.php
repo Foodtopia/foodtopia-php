@@ -63,7 +63,7 @@ $stmt = $pdo->query($sql);
             <td><?= $r['mobile'] ?></td>
             <td><?= $r['address'] ?></td>
             <td><?= $r['birthday'] ?></td>
-            <td><i class="fas fa-edit"></i></td>
+            <td><a href="ab_edit.php?sid=<?= $r['sid'] ?>"><i class="fas fa-edit"></i></a></td>
         </tr>
         <?php endwhile; ?>
         </tbody>
