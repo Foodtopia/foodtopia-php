@@ -9,6 +9,16 @@ $t_sql = "SELECT COUNT(1) FROM address_book";
 $total_rows = $pdo->query($t_sql)->fetch()[0]; //總筆數
 $total_pages = ceil($total_rows/$per_page); //總頁數
 
+// 限定頁碼範圍
+if($page<1){
+    header('Location: ab_list.php');
+    exit;
+}
+if($page>$total_pages) {
+    header('Location: ab_list.php?page='. $total_pages);
+    exit;
+}
+
 $sql = sprintf("SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s",
     ($page-1)*$per_page, $per_page);
 $stmt = $pdo->query($sql);
