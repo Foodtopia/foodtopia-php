@@ -8,13 +8,16 @@ if(!isset($_GET['sid'])){
     exit;
 }
 $sid =  intval($_GET['sid']);
-/*
+
 if(!empty($_POST['name']) and !empty($_POST['email'])){
     try {
-
-        $sql = "INSERT INTO `address_book`(
- `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
- ) VALUES (?, ?, ?, ?, ?, NOW())";
+        $sql = "UPDATE `address_book` SET 
+`name`=?,
+`email`=?,
+`mobile`=?,
+`address`=?,
+`birthday`=?
+WHERE `sid`=?";
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
@@ -22,32 +25,33 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
             $_POST['email'],
             $_POST['mobile'],
             $_POST['address'],
-            $_POST['birthday']
+            $_POST['birthday'],
+            $sid
         ]);
 
         $result = $stmt->rowCount();
         if($result==1){
             $info = [
                 'type' => 'success',
-                'text' => '資料新增完成'
+                'text' => '資料修改成功'
             ];
         } elseif($result==0) {
             $info = [
                 'type' => 'danger',
-                'text' => '資料沒有新增'
+                'text' => '資料修改失敗'
             ];
         }
 
     } catch(PDOException $ex){
         echo $ex->getMessage();
         //echo '---'. $ex->getCode(). '---';
-        $info = [
-            'type' => 'danger',
-            'text' => 'email 請勿重複'
-        ];
+//        $info = [
+//            'type' => 'danger',
+//            'text' => 'email 請勿重複'
+//        ];
     }
 }
-*/
+
 $r_sql = "SELECT * FROM address_book WHERE sid=$sid";
 $r_row = $pdo->query($r_sql)->fetch(PDO::FETCH_ASSOC);
 
@@ -56,9 +60,6 @@ if(empty($r_row)){
     header('Location: ab_list.php');
     exit;
 }
-
-
-
 
 ?>
 <?php include __DIR__. '/__html_head.php'; ?>
