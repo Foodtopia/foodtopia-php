@@ -46,7 +46,7 @@ $stmt = $pdo->query($sql);
         <tbody>
         <?php while($r = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
         <tr>
-            <td><a href="ab_del.php?sid=<?= $r['sid'] ?>"><i class="fas fa-trash-alt"></i></a></td>
+            <td><a href="javascript:del_it(<?= $r['sid'] ?>)"><i class="fas fa-trash-alt"></i></a></td>
             <th scope="row"><?= $r['sid'] ?></th>
             <td><?= $r['name'] ?></td>
             <td><?= $r['email'] ?></td>
@@ -69,4 +69,12 @@ $stmt = $pdo->query($sql);
         </ul>
     </nav>
 </div>
+    <script>
+        function del_it(sid){
+            if(confirm('你確定要刪除編號為 '+sid+' 的資料嗎?')){
+                location.href = 'ab_del.php?sid=' + sid;
+            }
+        }
+
+    </script>
 <?php include __DIR__. '/__html_foot.php';
