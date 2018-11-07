@@ -10,6 +10,18 @@ $result = [
 
 if(!empty($_POST['name']) and !empty($_POST['email'])){
 
+    $r_sql = "SELECT * FROM address_book WHERE email=?";
+    $r_stmt = $pdo->prepare($r_sql);
+    $r_stmt->execute([
+        $_POST['email']
+    ]);
+    if($r_stmt->rowCount()==1){
+        $result['resultCode'] = 408;
+        $result['errorMsg'] = 'email 重複';
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
     $result['postData'] = $_POST;
 
     try {
