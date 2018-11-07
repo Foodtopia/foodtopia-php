@@ -80,10 +80,11 @@ $pname = 'add2'; // 自訂的頁面名稱
                     },
                     body: $(document.forms[0]).serialize()
                 }).then(function(resp){
-                    return resp.json();
-                }).then(function(json){
-                    console.log(json);
+                    return resp.text();
+                }).then(function(txt){
+                    console.log(txt); // 檢查回傳字串
 
+                    let json = JSON.parse(txt);
 
                 }).catch(function(ex){
                     console.log('錯誤: ',ex);
