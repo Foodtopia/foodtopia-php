@@ -52,23 +52,23 @@ $pname = 'add2'; // 自訂的頁面名稱
     </div>
 </div>
     <script>
-        var name = $('#name'),
-            email = $('#email'),
+        // 全域變數, 不要使用 name 當變數名稱
+        var i_name = $('#name'),
+            i_email = $('#email'),
             i;
-
         function formCheck(){
             var birthday_pattern = /\d{4}\-\d{1,2}\-\d{1,2}/;
             var isPass = true;
-/*
-            if(! name.val()){
+
+            if(! i_name.val()){
                 alert('請填寫姓名');
                 isPass = false;
             }
-            if(! email.val()){
+            if(! i_email.val()){
                 alert('請填寫電子郵箱');
                 isPass = false;
             }
-*/
+
             //new FormData
 
             if(isPass){
