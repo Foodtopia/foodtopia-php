@@ -2,7 +2,7 @@
 require __DIR__. '/__connect_db.php';
 
 if(!isset($_GET['sid'])){
-    //echo 'no sid param!';
+    header('Location: ab_list.php');
     exit;
     //die('Hello');
 }
