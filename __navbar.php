@@ -17,6 +17,9 @@
                 <li class="nav-item <?= $pname=='add' ? 'active' : '' ?>">
                     <a class="nav-link" href="ab_add.php">Add</a>
                 </li>
+                <li class="nav-item <?= $pname=='add2' ? 'active' : '' ?>">
+                    <a class="nav-link" href="ab_add2.php">Add(ajax)</a>
+                </li>
             </ul>
         </div>
     </div>
