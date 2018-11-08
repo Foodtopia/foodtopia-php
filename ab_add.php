@@ -120,12 +120,17 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
          var el, i;
 
          // 用迴圈取得表單裡的每一個元素
-         for(i=0; i<form_els.length; i++){
-             el = $(form_els[i]);
-             console.log(i, el);
-             console.log(el.attr('name'), el.val());
-         }
+         // for(i=0; i<form_els.length; i++){
+         //     el = $(form_els[i]);
+         //     console.log(i, el);
+         //     console.log(el.attr('name'), el.val());
+         // }
 
+         for(i=0; i<form_els.length; i++){
+             el = form_els[i];
+             console.log(i, el);
+             console.log(el.name, el.value);
+         }
 
 
 
