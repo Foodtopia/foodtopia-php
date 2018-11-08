@@ -116,24 +116,19 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
     </div>
 </div>
     <script>
-        var name = $('#name'),
-            email = $('#email'),
-            i;
+         var form_els = document.forms[0];
+         var el, i;
 
-        function formCheck(){
-            var birthday_pattern = /\d{4}\-\d{1,2}\-\d{1,2}/;
-            var isPass = true;
+         // 用迴圈取得表單裡的每一個元素
+         for(i=0; i<form_els.length; i++){
+             el = $(form_els[i]);
+             console.log(i, el);
+             console.log(el.attr('name'), el.val());
+         }
 
-            if(! name.val()){
-                alert('請填寫姓名');
-                isPass = false;
-            }
-            if(! email.val()){
-                alert('請填寫電子郵箱');
-                isPass = false;
-            }
-            return isPass;
-        }
+
+
+
 
     </script>
 <?php include __DIR__. '/__html_foot.php';
