@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-unset($_SESSION['user']);
+$_SESSION['user'] = 'logout';
 
-header('Location: login01.php');
+header('Location: http://localhost:3001/login');
 
 

@@ -1,7 +1,7 @@
 <?php
 require __DIR__. '/__connect_db.php';
 
-$stmt = $pdo->query("SELECT * FROM address_book");
+$stmt = $pdo->query("SELECT * FROM members");
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include __DIR__. '/__html_head.php'; ?>

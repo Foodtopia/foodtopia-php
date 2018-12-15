@@ -1,4 +1,13 @@
 <?php
+session_start();
+if ($_SESSION['user'] == 'login' || ($_POST['email'] == 'foodtopia@gmail.com' and $_POST['password'] == '123')) {
+    $_SESSION['user'] = 'login';     // 代表已登入
+} else {
+    header("Location: http://localhost:3001/login"); 
+    exit;
+}
+?>
+<?php
 require __DIR__. '/__connect_db.php';
 
 $pname = 'edit'; // 自訂的頁面名稱
@@ -9,23 +18,27 @@ if(!isset($_GET['sid'])){
 }
 $sid =  intval($_GET['sid']);
 
-if(!empty($_POST['name']) and !empty($_POST['email'])){
+if(!empty($_POST['nick_name']) and !empty($_POST['email'])){
     try {
-        $sql = "UPDATE `address_book` SET 
+        $sql = "UPDATE `members` SET 
 `name`=?,
 `email`=?,
+`password`=?,
 `mobile`=?,
 `address`=?,
-`birthday`=?
+`account`=?,
+`nick_name`=?
 WHERE `sid`=?";
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
             $_POST['name'],
             $_POST['email'],
+            $_POST['password'],
             $_POST['mobile'],
             $_POST['address'],
-            $_POST['birthday'],
+            $_POST['account'],
+            $_POST['nick_name'],
             $sid
         ]);
 
@@ -52,7 +65,7 @@ WHERE `sid`=?";
     }
 }
 
-$r_sql = "SELECT * FROM address_book WHERE sid=$sid";
+$r_sql = "SELECT * FROM members WHERE sid=$sid";
 $r_row = $pdo->query($r_sql)->fetch(PDO::FETCH_ASSOC);
 
 if(empty($r_row)){
@@ -72,42 +85,50 @@ if(empty($r_row)){
         </div>
     </div>
     <?php endif; ?>
-    <div class="col-md-6">
+    <div class="container" style="margin-top: 20px">
+    <div class="col-md-6" style='margin:auto'>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">修改資料</h5>
+                <h5 class="card-title" style='text-align:center'>會員資料編輯</h5>
                 <form method="post" >
                     <div class="form-group">
-                        <label for="name">姓名</label>
-                        <input type="text" class="form-control"
-                               id="name" name="name" value="<?= htmlentities($r_row['name']) ?>"
-                               placeholder="Enter name">
+                        <label for="birthday">帳號啟用("1"為啟用)</label>
+                        <input value="<?= htmlentities($r_row['account']) ?>" type="text" class="form-control"
+                               id="birthday" name="account" placeholder="Enter here">
                     </div>
                     <div class="form-group">
-                        <label for="email">電郵</label>
-                        <input type="email" class="form-control" readonly
-                               id="email" name="email" value="<?= htmlentities($r_row['email']) ?>"
-                               placeholder="Enter email">
+                        <label for="name">姓名</label>
+                        <input value="<?= htmlentities($r_row['name']) ?>" type="text" class="form-control"
+                               id="name" name="name" placeholder="Enter here"
+                               >
+                    </div>
+                    <div class="form-group">
+                        <label for="name">暱稱</label>
+                        <input value="<?= htmlentities($r_row['nick_name']) ?>" type="text" class="form-control"
+                               id="name" name="nick_name"
+                               placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">信箱</label>
+                        <input value="<?= htmlentities($r_row['email']) ?>" type="email" class="form-control"
+                               id="email" name="email" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">密碼</label>
+                        <input value="<?= htmlentities($r_row['password']) ?>" type="text" class="form-control"
+                               id="email" name="password" placeholder="Enter here">
                     </div>
                     <div class="form-group">
                         <label for="mobile">手機</label>
-                        <input type="text" class="form-control"
-                               id="mobile" name="mobile" value="<?= htmlentities($r_row['mobile']) ?>"
-                               placeholder="Enter mobile">
-                    </div>
-                    <div class="form-group">
-                        <label for="birthday">生日</label>
-                        <input type="text" class="form-control"
-                               id="birthday" name="birthday" value="<?= htmlentities($r_row['birthday']) ?>"
-                               placeholder="YYYY-MM-DD">
+                        <input value="<?= htmlentities($r_row['mobile']) ?>" type="text" class="form-control"
+                               id="mobile" name="mobile" placeholder="Enter here">
                     </div>
                     <div class="form-group">
                         <label for="address">地址</label>
-                        <input type="text" class="form-control"
-                               id="address" name="address" value="<?= htmlentities($r_row['address']) ?>"
-                               placeholder="Enter address">
+                        <input value="<?= htmlentities($r_row['address']) ?>" type="text" class="form-control"
+                               id="address" name="address" placeholder="Enter here">
                     </div>
-                    <button type="submit" class="btn btn-primary">修改</button>
+                    <button type="submit" class="btn btn-danger w-100">Submit</button>
                 </form>
 
             </div>

@@ -10,7 +10,7 @@ $result = [
 
 if(!empty($_POST['name']) and !empty($_POST['email'])){
 
-    $r_sql = "SELECT * FROM address_book WHERE email=?";
+    $r_sql = "SELECT * FROM members WHERE email=?";
     $r_stmt = $pdo->prepare($r_sql);
     $r_stmt->execute([
         $_POST['email']
@@ -26,7 +26,7 @@ if(!empty($_POST['name']) and !empty($_POST['email'])){
 
     try {
 
-        $sql = "INSERT INTO `address_book`(
+        $sql = "INSERT INTO `members`(
  `name`, `email`, `mobile`, `address`, `birthday`, `created_at`
  ) VALUES (?, ?, ?, ?, ?, NOW())";
         $stmt = $pdo->prepare($sql);

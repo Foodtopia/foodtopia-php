@@ -1,8 +1,8 @@
 <?php
 $db_host = 'localhost';
-$db_name = 'express01';
-$db_user = 'shinder';
-$db_pass = 'admin';
+$db_name = 'foodtopia';
+$db_user = 'root';
+$db_pass = '';
 
 $dsn = sprintf('mysql:dbname=%s;host=%s', $db_name, $db_host);
 

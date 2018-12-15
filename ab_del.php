@@ -8,7 +8,7 @@ if(!isset($_GET['sid'])){
 }
 $sid =  intval($_GET['sid']);
 
-$sql = "DELETE FROM `address_book` WHERE sid=$sid";
+$sql = "DELETE FROM `members` WHERE sid=$sid";
 
 $stmt = $pdo->query($sql);
 
