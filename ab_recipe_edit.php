@@ -12,11 +12,11 @@ require __DIR__. '/__connect_db.php';
 
 $pname = 'recipe_edit'; // 自訂的頁面名稱
 
-// if(!isset($_GET['sid'])){
+// if(!isset($_GET['id'])){
 //     header('Location: ab_recipe_list.php');
 //     exit;
 // }
-$sid =  intval($_GET['id']);
+$id =  intval($_GET['id']);
 
 if(!empty($_POST['menu']) and !empty($_POST['Introduction'])){
     try {
@@ -26,8 +26,8 @@ if(!empty($_POST['menu']) and !empty($_POST['Introduction'])){
                 `menu_img`=?,
                 `time`=?,
                 `difficult`=?,
-                `serving`=?,
-                WHERE `sid`=?";
+                `serving`=?
+                WHERE `id`=?";
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
@@ -37,7 +37,7 @@ if(!empty($_POST['menu']) and !empty($_POST['Introduction'])){
             $_POST['time'],
             $_POST['difficult'],
             $_POST['serving'],
-            $sid
+            $id
         ]);
 
         $result = $stmt->rowCount();
@@ -63,7 +63,7 @@ if(!empty($_POST['menu']) and !empty($_POST['Introduction'])){
     }
 }
 
-$r_sql = "SELECT * FROM menu01 WHERE id=$sid";
+$r_sql = "SELECT * FROM menu01 WHERE id=$id";
 $r_row = $pdo->query($r_sql)->fetch(PDO::FETCH_ASSOC);
 
 if(empty($r_row)){
@@ -105,12 +105,12 @@ if(empty($r_row)){
                         <input value="<?= htmlentities($r_row['menu_img']) ?>" type="text" class="form-control"
                                id="menu_img" name="menu_img" placeholder="Enter here">
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="time">時間</label>
                         <input value="<?= htmlentities($r_row['time']) ?>" type="text" class="form-control"
                                id="time" name="time" placeholder="Enter here">
-                    </div> -->
-                    <div class="input-group mb-3">
+                    </div>
+                    <!-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="time">時間</label>
                         </div>
@@ -121,14 +121,14 @@ if(empty($r_row)){
                             <option value="3">45分鐘</option>
                             <option value="4">60分鐘</option>
                         </select>
-                    </div>
+                    </div> -->
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="difficult">難度</label>
                         <input value="<?= htmlentities($r_row['difficult']) ?>" type="text" class="form-control"
                                id="difficult" name="difficult" placeholder="Enter here">
-                    </div> -->
-                    <div class="input-group mb-3">
+                    </div>
+                    <!-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="difficult">難度</label>
                         </div>
@@ -138,14 +138,14 @@ if(empty($r_row)){
                             <option value="2">中等</option>
                             <option value="3">困難</option>
                         </select>
-                    </div>
+                    </div> -->
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="serving">份量</label>
                         <input value="<?= htmlentities($r_row['serving']) ?>" type="text" class="form-control"
                                id="serving" name="serving" placeholder="Enter here">
-                    </div> -->
-                    <div class="input-group mb-3">
+                    </div>
+                    <!-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="serving">份量</label>
                         </div>
@@ -156,7 +156,39 @@ if(empty($r_row)){
                             <option value="3">3人份</option>
                             <option value="4">4人份</option>
                         </select>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="step_1">步驟1</label>
+                        <input value="<?= htmlentities($r_row['step_1']) ?>" type="text" class="form-control"
+                               id="step_1" name="step_1" placeholder="Enter here">
                     </div>
+                    <div class="form-group">
+                        <label for="step_2">步驟2</label>
+                        <input value="<?= htmlentities($r_row['step_2']) ?>" type="text" class="form-control"
+                               id="step_2" name="step_2" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="step_3">步驟3</label>
+                        <input value="<?= htmlentities($r_row['step_3']) ?>" type="text" class="form-control"
+                               id="step_3" name="step_3" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="step_4">步驟4</label>
+                        <input value="<?= htmlentities($r_row['step_4']) ?>" type="text" class="form-control"
+                               id="step_4" name="step_4" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="step_5">步驟5</label>
+                        <input value="<?= htmlentities($r_row['step_5']) ?>" type="text" class="form-control"
+                               id="step_5" name="step_5" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="step_6">步驟6</label>
+                        <input value="<?= htmlentities($r_row['step_6']) ?>" type="text" class="form-control"
+                               id="step_6" name="step_6" placeholder="Enter here">
+                    </div>
+
 
                     <button type="submit" class="btn btn-primary">修改</button>
                 </form>
