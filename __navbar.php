@@ -84,10 +84,6 @@ if ($_SESSION['user'] == 'login' || ($_POST['email'] == 'foodtopia@gmail.com' an
                 <li class="nav-item <?=$pname == 'recipe_list' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_recipe_list.php">食譜列表</a>
                 </li>
-                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
-                    <a class="nav-link" href="ab_recipe_add.php">食譜新增</a>
-                </li>
-                
                 <!-- <li class="nav-item <?=$pname == 'add2' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_add2.php">Add(ajax)</a>
                 </li> -->
@@ -95,7 +91,35 @@ if ($_SESSION['user'] == 'login' || ($_POST['email'] == 'foodtopia@gmail.com' an
         </div>
     </div>
 </nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">食譜新增</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_recipe_add.php">食譜新增1</a>
+                </li>
+                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_recipe_add2.php">食譜新增2</a>
+                </li>
+                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_recipe_add3.php">食譜新增3</a>
+                </li>
+                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_recipe_add4.php">食譜新增4</a>
+                </li> 
+                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_recipe_add5.php">食譜新增5</a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+</nav> -->
 
 <style>
 

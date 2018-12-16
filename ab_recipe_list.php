@@ -64,7 +64,7 @@ $stmt = $pdo->query($sql);
         <tr>
             <td><a href="javascript:del_it(<?=$r['id']?>)"><i class="fas fa-trash-alt"></i></a></td>
             <th scope="row"><?=$r['id']?></th>
-            <td><?=$r['menu']?></td>
+            <td><a href="http://localhost:3001/page/<?=$r['id']?>"><?=$r['menu']?></a></td>
             <td><?=$r['nick_name']?></td>
             <td><a href="ab_recipe_edit.php?id=<?=$r['id']?>"><i class="fas fa-edit"></i></a></td>
         </tr>
