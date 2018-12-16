@@ -81,9 +81,9 @@ if ($_SESSION['user'] == 'login' || ($_POST['email'] == 'foodtopia@gmail.com' an
                 <li class="nav-item <?=$pname == 'recipe_list' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_recipe_list.php">食譜列表</a>
                 </li>
-                <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
+                <!-- <li class="nav-item <?=$pname == 'recipe_add' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_recipe_add.php">食譜新增</a>
-                </li>
+                </li> -->
                 
                 <!-- <li class="nav-item <?=$pname == 'add2' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_add2.php">Add(ajax)</a>
