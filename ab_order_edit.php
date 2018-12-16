@@ -93,20 +93,21 @@ if(empty($r_row)){
 ?>
 <?php include __DIR__. '/__html_head.php'; ?>
 <?php include __DIR__. '/__navbar.php'; ?>
+    
 <div class="container" style="margin-top: 20px">
-    <?php if(isset($info)): ?>
+<div class='row'>
     <div class="col-md-6">
+    <?php if(isset($info)): ?>
+    
         <div class="alert alert-<?= $info['type'] ?>" role="alert">
             <?= $info['text'] ?>
         </div>
-    </div>
+    
     <?php endif; ?>
-    <div class="container" style="margin-top: 20px">
-    <div class="col-md-6" style='margin:auto'>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title" style='text-align:center'>訂單資料編輯</h5>
-                <form method="post" >
+                <form method="post">
                     <div class="form-group">
                         <label for="order_num">訂單編號</label>
                         <input value="<?= htmlentities($r_row['order_num']) ?>" type="text" class="form-control"
@@ -206,6 +207,40 @@ if(empty($r_row)){
             </div>
         </div>
     </div>
+    <?php
+        $order_num= $r_row['order_num'];
+        $p_sql = "SELECT * FROM `orders_details` WHERE order_num=$order_num";
+        $p_stmt = $pdo->query($p_sql);
+
+    ?>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" style='text-align:center'>訂單內容</h5>
+                <table class="table">
+                    <thead class=''>
+                        <tr>
+                            <th scope="col" class='text-nowrap'>商品編號</th>
+                            <th scope="col" class='text-nowrap'>商品名稱</th>
+                            <th scope="col" class='text-nowrap'>商品數量</th>
+                            <th scope="col" class='text-nowrap'>商品價格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while ($p  = $p_stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                        <tr>
+                            <td class='text-nowrap' scope="row"><?=$p['product_sid']?></td>
+                            <td class='text-nowrap' scope="row"><?=$p['product_name']?></td>
+                            <td class='text-nowrap' scope="row"><?=$p['qty']?></td>
+                            <td class='text-nowrap' scope="row"><?="NT$ ".$p['price']?></td>
+                        </tr>
+                    <?php endwhile;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
     <script>
     var submit = document.querySelector('#submit')

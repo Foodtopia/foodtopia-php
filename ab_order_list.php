@@ -69,8 +69,7 @@ $stmt = $pdo->query($sql);
             <th scope="col" class='text-nowrap'>付款狀態</th>
             <th scope="col" class='text-nowrap'>出貨狀態</th>
             <th scope="col" class='text-nowrap'>訂單時間</th>
-            <th scope="col" class='text-nowrap'>訂單內容</th>
-            <th scope="col" class='text-nowrap'>編輯</th>
+            <th scope="col" class='text-nowrap'>編輯/檢視</th>
         </tr>
         </thead>
         <tbody>
@@ -92,7 +91,6 @@ $stmt = $pdo->query($sql);
             <td class='text-nowrap'><?=$r['isPay'] == 0 ? '未付款' : '已付款'?></td>
             <td class='text-nowrap'><?=$r['isShip'] == 0 ? '未出貨' : '已出貨'?></td>
             <td class='text-nowrap'><?=$r['created_at']?></td>
-            <td class='text-nowrap'><a href="ab_order_detail.php?order_num=<?=$r['order_num']?>"><i class="far fa-eye"></i></a></td>
             <td class='text-nowrap'><a href="ab_order_edit.php?sid=<?=$r['sid']?>"><i class="fas fa-edit"></i></a></td>
         </tr>
         <?php endwhile;?>
