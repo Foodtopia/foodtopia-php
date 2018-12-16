@@ -72,6 +72,9 @@ if ($_SESSION['user'] == 'login' || ($_POST['email'] == 'foodtopia@gmail.com' an
                 <li class="nav-item <?=$pname == 'add' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_add.php">會員新增</a>
                 </li>
+                <li class="nav-item <?=$pname == 'order_list' ? 'active' : ''?>">
+                    <a class="nav-link" href="ab_order_list.php">訂單列表</a>
+                </li>
                 <li class="nav-item <?=$pname == 'igr_list' ? 'active' : ''?>">
                     <a class="nav-link" href="ab_igr_list.php">食材列表</a>
                 </li>

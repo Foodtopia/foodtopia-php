@@ -1,7 +1,7 @@
 <?php
 $db_host = 'localhost';
 $db_name = 'foodtopia';
-$db_user = 'root';
+$db_user = 'foodtopia';
 $db_pass = '';
 
 $dsn = sprintf('mysql:dbname=%s;host=%s', $db_name, $db_host);
