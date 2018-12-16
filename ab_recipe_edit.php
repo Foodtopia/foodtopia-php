@@ -158,7 +158,7 @@ if(empty($r_row)){
                         </select>
                     </div> -->
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="step_1">步驟1</label>
                         <input value="<?= htmlentities($r_row['step_1']) ?>" type="text" class="form-control"
                                id="step_1" name="step_1" placeholder="Enter here">
@@ -187,7 +187,7 @@ if(empty($r_row)){
                         <label for="step_6">步驟6</label>
                         <input value="<?= htmlentities($r_row['step_6']) ?>" type="text" class="form-control"
                                id="step_6" name="step_6" placeholder="Enter here">
-                    </div>
+                    </div> -->
 
 
                     <button type="submit" class="btn btn-primary">修改</button>
